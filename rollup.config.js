@@ -34,3 +34,7 @@ export default [
         ]
     }
 ];
+// react: 5KB
+// @liangshen/react-canvas: 176KB   [react-reconciler: 94KB, minigame-canvas-engine: 78KB]
+// @liangshen/react-canvas-richtext: 9KB
+
