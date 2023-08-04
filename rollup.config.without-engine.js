@@ -7,7 +7,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import terser from "@rollup/plugin-terser";
 import replace from "@rollup/plugin-replace";
 import image from "@rollup/plugin-image";
-import clear from 'rollup-plugin-clear';
 
 export default [
     // CommonJS (for Node) and ES module (for bundlers) build.
@@ -19,7 +18,6 @@ export default [
     {
         input: './src/index.ts',
         plugins: [
-            clear({targets: ['dist']}),
             typescript(),
             image(),
             commonjs(),
@@ -33,7 +31,8 @@ export default [
         output: [
             {file: pkg.main, format: 'cjs'},
             {file: pkg.module, format: 'es'}
-        ]
+        ],
+        external: ['minigame-canvas-engine', 'minigame-canvas-engine-richtext'],
     }
 ];
 // react: 5KB
