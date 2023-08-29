@@ -114,7 +114,7 @@ export default Notice;
 // Text没问题
 setTimeout(() => {
     const child = new Layout.Text({
-        value: '测试一下测试一下',
+        value: '测试一下 Text 插入',
         style: {
             paddingTop: 50,
             width: 500,
@@ -128,13 +128,13 @@ setTimeout(() => {
     const container = Layout.getElementById('container')!;
     container.appendChild(child);
     Layout.reflow();
-    console.log('元素已插入，没问题')
-}, 1000)
+    console.log('元素已插入，没问题');
+}, 1000);
 
 // RichText有问题
 setTimeout(() => {
     const child = new (Layout as any)['RichText']({
-        text: '测试一下测试一下',
+        text: '测试一下 RichText 插入',
         contentStyle: {
             paddingTop: 50,
             width: 500,
@@ -148,5 +148,5 @@ setTimeout(() => {
     const container = Layout.getElementById('container')!;
     container.appendChild(child);
     Layout.reflow();
-    console.log('元素未插入，有问题')
-}, 2000)
+    console.log('元素未插入，有问题');
+}, 2000);
