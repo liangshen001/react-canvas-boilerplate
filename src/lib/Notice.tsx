@@ -3,6 +3,8 @@ import {Text, View, Image} from "@liangshen/react-canvas";
 import bgImg from '../download.png'
 import RichText from "@liangshen/react-canvas-richtext";
 
+import Layout from "minigame-canvas-engine";
+
 const containerStyle = {width: '100%', height: '100%'}
 const bodyContainerStyle = (bodyWidth: string, bodyHeight: string): CSSProperties => ({
     width: bodyWidth,
@@ -45,7 +47,7 @@ const rightContainerStyle = {
     marginLeft: '3%'
 }
 const contentStyle: CSSProperties = {
-    width: '66%',
+    width: '10%',
     fontSize: 10,
     height: '100%',
     wordBreak: 'break-all',
@@ -98,9 +100,9 @@ function Notice(props: IAppProps) {
                         )
                     }
                 </View>
-                <View style={rightContainerStyle}>
-                    {/*<RichText text={selectItem.content} style={contentStyle}></RichText>*/}
-                    <Text value={selectItem.content} style={contentStyle}></Text>
+                <RichText text={selectItem.content} style={contentStyle}></RichText>
+                <View style={rightContainerStyle} id={"container"}>
+                    {/*<Text value={selectItem.content} style={contentStyle}></Text>*/}
                 </View>
             </View>
         </View>
@@ -108,3 +110,36 @@ function Notice(props: IAppProps) {
 }
 
 export default Notice;
+
+setTimeout(() => {
+    // 没问题
+    // const child = new Layout.Text({
+    //     value: '测试一下测试一下',
+    //     style: {
+    //         paddingTop: 50,
+    //         width: 500,
+    //         fontSize: 10,
+    //         height: 100,
+    //         textAlign: 'center',
+    //         lineHeight: 100,
+    //         fontWeight: 'bold',
+    //     }
+    // })
+    // 有问题
+    const child = new (Layout as any)['RichText']({
+        text: '测试一下测试一下',
+        contentStyle: {
+            paddingTop: 50,
+            width: '50',
+            fontSize: 10,
+            height: 100,
+            textAlign: 'center',
+            lineHeight: 100,
+            fontWeight: 'bold',
+        }
+    })
+    const container = Layout.getElementById('container')!;
+    container.appendChild(child);
+    Layout.reflow();
+    console.log('元素已插入')
+}, 1000)
