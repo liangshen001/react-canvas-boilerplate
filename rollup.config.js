@@ -8,6 +8,7 @@ import terser from "@rollup/plugin-terser";
 import replace from "@rollup/plugin-replace";
 import image from "@rollup/plugin-image";
 import clear from 'rollup-plugin-clear';
+import {dts} from "rollup-plugin-dts";
 
 export default [
     // CommonJS (for Node) and ES module (for bundlers) build.
@@ -17,7 +18,7 @@ export default [
     // an array for the `output` option, where we can specify
     // `file` and `format` for each target)
     {
-        input: './src/index.ts',
+        input: './src/lib/index.tsx',
         plugins: [
             clear({targets: ['dist']}),
             typescript(),
@@ -34,6 +35,16 @@ export default [
             {file: pkg.main, format: 'cjs'},
             {file: pkg.module, format: 'es'}
         ]
+    },
+    {
+        input: './src/lib/index.tsx',
+        plugins: [
+            dts()
+        ],
+        output: {
+            file: pkg.types,
+            format: 'es'
+        }
     }
 ];
 // react: 5KB
