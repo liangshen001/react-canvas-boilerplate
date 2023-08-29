@@ -111,26 +111,13 @@ function Notice(props: IAppProps) {
 
 export default Notice;
 
+// Text没问题
 setTimeout(() => {
-    // 没问题
-    // const child = new Layout.Text({
-    //     value: '测试一下测试一下',
-    //     style: {
-    //         paddingTop: 50,
-    //         width: 500,
-    //         fontSize: 10,
-    //         height: 100,
-    //         textAlign: 'center',
-    //         lineHeight: 100,
-    //         fontWeight: 'bold',
-    //     }
-    // })
-    // 有问题
-    const child = new (Layout as any)['RichText']({
-        text: '测试一下测试一下',
-        contentStyle: {
+    const child = new Layout.Text({
+        value: '测试一下测试一下',
+        style: {
             paddingTop: 50,
-            width: '50',
+            width: 500,
             fontSize: 10,
             height: 100,
             textAlign: 'center',
@@ -141,5 +128,25 @@ setTimeout(() => {
     const container = Layout.getElementById('container')!;
     container.appendChild(child);
     Layout.reflow();
-    console.log('元素已插入')
+    console.log('元素已插入，没问题')
 }, 1000)
+
+// RichText有问题
+setTimeout(() => {
+    const child = new (Layout as any)['RichText']({
+        text: '测试一下测试一下',
+        contentStyle: {
+            paddingTop: 50,
+            width: 500,
+            fontSize: 10,
+            height: 100,
+            textAlign: 'center',
+            lineHeight: 100,
+            fontWeight: 'bold',
+        }
+    })
+    const container = Layout.getElementById('container')!;
+    container.appendChild(child);
+    Layout.reflow();
+    console.log('元素未插入，有问题')
+}, 2000)
