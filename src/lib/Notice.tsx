@@ -47,7 +47,7 @@ const rightContainerStyle = {
     marginLeft: '3%'
 }
 const contentStyle: CSSProperties = {
-    width: '10%',
+    width: '58%',
     fontSize: 10,
     height: '100%',
     wordBreak: 'break-all',
@@ -100,8 +100,8 @@ function Notice(props: IAppProps) {
                         )
                     }
                 </View>
-                <RichText text={selectItem.content} style={contentStyle}></RichText>
                 <View style={rightContainerStyle} id={"container"}>
+                    <RichText value={selectItem.content} style={contentStyle}></RichText>
                     {/*<Text value={selectItem.content} style={contentStyle}></Text>*/}
                 </View>
             </View>
@@ -111,42 +111,3 @@ function Notice(props: IAppProps) {
 
 export default Notice;
 
-// Text没问题
-setTimeout(() => {
-    const child = new Layout.Text({
-        value: '测试一下 Text 插入',
-        style: {
-            paddingTop: 50,
-            width: 500,
-            fontSize: 10,
-            height: 100,
-            textAlign: 'center',
-            lineHeight: 100,
-            fontWeight: 'bold',
-        }
-    })
-    const container = Layout.getElementById('container')!;
-    container.appendChild(child);
-    Layout.reflow();
-    console.log('元素已插入，没问题');
-}, 1000);
-
-// RichText有问题
-setTimeout(() => {
-    const child = new (Layout as any)['RichText']({
-        text: '测试一下 RichText 插入',
-        contentStyle: {
-            paddingTop: 50,
-            width: 500,
-            fontSize: 10,
-            height: 100,
-            textAlign: 'center',
-            lineHeight: 100,
-            fontWeight: 'bold',
-        }
-    })
-    const container = Layout.getElementById('container')!;
-    container.appendChild(child);
-    Layout.reflow();
-    console.log('元素未插入，有问题');
-}, 2000);

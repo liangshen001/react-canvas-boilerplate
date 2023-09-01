@@ -3,8 +3,8 @@
   "version": "1.0.93",
   "private": false,
   "dependencies": {
-    "@liangshen/react-canvas": "^18.0.16",
-    "@liangshen/react-canvas-richtext": "^18.0.7",
+    "@liangshen/react-canvas": "^18.0.17",
+    "@liangshen/react-canvas-richtext": "^18.0.8",
     "react": "^18.2.0"
   },
   "scripts": {
